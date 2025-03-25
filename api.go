@@ -69,6 +69,7 @@ func withJWTAuth(handleFunc http.HandlerFunc, s Storage) http.HandlerFunc {
 
 		claims := token.Claims.(jwt.MapClaims)
 
+		// instead of this messy conversion, we can create a custom claims obj with your own typing
 		if account.Number != int64(claims["accountNumber"].(float64)) {
 			permissionDenied(w)
 			return
